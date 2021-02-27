@@ -1,0 +1,10 @@
+#!/bin/bash
+#####################################################
+#
+########################
+#Author: Kamlesh
+#Email: kamsjec@gmail.com
+#Description: This is my first scripts
+######################################################
+
+echo "Hello world"
