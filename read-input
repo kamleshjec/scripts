@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+########################################
+#Author: Kamlesh
+#Date: 01.03.2021
+#Description: read user input
+#Last Modified: 
+#######################################
+
+echo "What is your fisrt name?"
+read a
+echo
+echo "What is your last name?"
+read b
+echo
+
+echo Hello $a $b

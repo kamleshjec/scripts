@@ -5,6 +5,19 @@
 #Author: Kamlesh
 #Email: kamsjec@gmail.com
 #Description: This is my first scripts
+#Date: 01/03/2021
 ######################################################
 
-echo "Hello world"
+echo "Perform below task"
+
+whoami
+echo
+pwd
+echo
+hostname
+echo
+ls -ltr
+echo
+
+echo "This is end of all the task"
+

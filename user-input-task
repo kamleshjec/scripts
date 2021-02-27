@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+########################################################
+#Author: Kamlesh
+#Date: 01.03.2021
+#Description: this script will rename a file
+#Last Modified: 
+########################################################
+
+clear
+echo Enter the file name to be rename
+read oldfilename
+
+echo Enter the new file name 
+read newfilename
+
+mv $oldfilename $newfilename
+echo The file has been renamed as $newfilename

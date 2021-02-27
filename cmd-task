@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+##############################################
+#Author: Kamlesh
+#Date: 01.03.2021
+#Description: run commands in the script
+#Last Modified:
+##############################################
+
+w=whoami
+d=date
+
+echo "Hello `$w` "
+echo
+echo Today is `$d`
+echo
+echo Number of user login: `who | wc -l`
+echo
