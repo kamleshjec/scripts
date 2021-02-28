@@ -25,3 +25,4 @@ b ) ls;;
 c ) who;;
 d ) uptime;;
 * ) echo Invalid choice - Bye
+esac
