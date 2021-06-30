@@ -1,0 +1,93 @@
+System.log("Creating Rest Call to get Deployments");
+var bToken = "Bearer "+token;
+var accessTokenUri = "/deployment/api/deployments?size=200";
+
+var getDeployments = vraHost.createRequest("GET", accessTokenUri,"");
+getDeployments.contentType = "application/json";
+getDeployments.setHeader("Content-Type", "application/json");
+getDeployments.setHeader("Authorization", bToken );
+
+var response = getDeployments.execute();
+System.log("StatusCode for Deployments Call: "+ response.statusCode);
+var jsonParsed = JSON.parse(response.contentAsString);
+var jsonContent = jsonParsed.content;
+var jsonContentLength = jsonContent.length;
+
+//Loop through the JSOn Object and Delete required objects
+for (var i = 0; i < jsonContentLength; i++){
+delete jsonContent[i].id;
+delete jsonContent[i].orgId;
+delete jsonContent[i].catalogItemId;
+delete jsonContent[i].catalogItemVersion;
+delete jsonContent[i].blueprintId;
+delete jsonContent[i].blueprintVersion;
+delete jsonContent[i].iconId;
+delete jsonContent[i].lastUpdatedBy;
+delete jsonContent[i].projectId;
+}
+
+for (var i = 0; i < jsonContentLength; i++){
+	if(jsonContent[i].inputs.os.indexOf("LWL-RHEL") == 0){
+		//var diskLength = jsonContent[i].inputs.Linuxdisk.length;
+		
+		var inputVar = {
+			"OS":jsonContent[i].inputs.os,
+			"Flavor":jsonContent[i].inputs.flavor,		
+			"AppName":jsonContent[i].inputs.Appname,
+			"DR_Type":jsonContent[i].inputs.drType,
+			"Backup":jsonContent[i].inputs.Backup,
+			"MaintenanceWindow":jsonContent[i].inputs.maintenancewindow,
+			"SiteCode":jsonContent[i].inputs.siteCode,
+			"Environment":jsonContent[i].inputs.environment
+		};
+var inputAttr = JSON.stringify(inputVar);
+var inputAttr = inputAttr.replace("{","");
+var inputAttr = inputAttr.replace("}","");
+jsonContent[i].Attributes = inputAttr;		
+
+} else {
+ 	//var diskLength = jsonContent[i].inputs.WinDisk.length;
+		var inputVar = {
+			"OS":jsonContent[i].inputs.os,
+			"Flavor":jsonContent[i].inputs.flavor,		
+			"AppName":jsonContent[i].inputs.Appname,
+			"DR_Type":jsonContent[i].inputs.drType,
+			"Backup":jsonContent[i].inputs.Backup,
+			"MaintenanceWindow":jsonContent[i].inputs.maintenancewindow,
+			"SiteCode":jsonContent[i].inputs.siteCode,
+			"Environment":jsonContent[i].inputs.environment
+		}
+
+var inputAttr = JSON.stringify(inputVar);
+var inputAttr = inputAttr.replace("{","");
+var inputAttr = inputAttr.replace("}","");
+jsonContent[i].Attributes = inputAttr;
+}
+delete jsonContent[i].inputs;
+delete jsonContent[i].description;			
+}
+
+
+//Replace Column Headers
+var deploymentsAsJson = JSON.stringify(jsonContent);
+deploymentsAsJson = deploymentsAsJson.replace(/\"status\"/g,"\"RequestStatus\"");
+
+var resElem = new MimeAttachment();
+resElem.mimeType = "text/json";
+resElem.content = deploymentsAsJson;
+var fileName = "deploymentReporting.json";
+var folder = "Deployment Reporting";
+var resElems = Server.getResourceElementCategoryWithPath(folder);
+var control = true;
+if (resElems.allResourceElements.length > 0){
+	resElems.resourceElements.forEach(function(entry) { //loop  
+		if(entry.name == fileName){ //get resource element by the name
+			entry.setContentFromMimeAttachment(resElem); 
+			//if file is found, update it.
+			control = false;
+		}
+	});
+}
+if(control){ //if the file is not found, create it.
+	Server.createResourceElement(folder, fileName, resElem);
+}

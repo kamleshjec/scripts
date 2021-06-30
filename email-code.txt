@@ -1,0 +1,136 @@
+/**
+ * Logs  EventBrokerProperties.
+ * @param {properties} inputProperties
+ * @returns {string} void.
+*/
+//Initiate Logger
+var log = System.getModule("com.vodafone.logger").logger().init("[Workflow: VM Configuration] ");
+//Input parameters
+var inputProperties;
+
+//Main
+//SendEmail("darren.philips@ibm.com","Lowell Managed VM","content");
+
+log.d("inputProperties: " + JSON.stringify(inputProperties));
+
+var tags = inputProperties.tags || new Properties();
+var customProperties = inputProperties.customProperties || new Properties();
+
+try{
+    //Use workflow metadata to set tags and properties
+    var userName = System.getContext().getParameter("__metadata_userName");
+    var eventTopicId = System.getContext().getParameter("__metadata_eventTopicId");
+
+    tags.put("UserName",userName);
+    tags.put("EventTopic",eventTopicId);
+    customProperties.put("UserName",userName);
+    customProperties.put("EventTopic",eventTopicId);
+
+    log.d("userName: " + userName);
+}
+catch(e){
+    log.e("Error: " + e);
+}
+
+// eslint-disable-next-line no-prototype-builtins
+if (customProperties && customProperties.hasOwnProperty("managed")){
+    if(customProperties.managed === true || customProperties.managed.toLowerCase() === "managed"){
+
+        var expandedCustomProperties = JSON.stringify(customProperties,null,2);
+        var resourceNames = inputProperties.resourceNames.toString();
+        var ipAddress = inputProperties.addresses[0][0];
+
+        log.d("customProperties.managed: " + customProperties.managed);
+        log.d("resourceNames: " + inputProperties.resourceNames.toString());
+        log.d("addresses: " + inputProperties.addresses[0][0]);
+        log.d("SendEmail customProperties: " + expandedCustomProperties);
+        //SendEmail ,liam.crowe@ibm.com
+        SendEmail("uk-eu_squad@wwpdl.vnet.ibm.com","Lowell Managed VM","liam.crowe@ibm.com",createContent());
+        waitForCustomEvent();
+    }
+    else{
+        log.d("customProperties.managed: " + customProperties.managed);
+        //Unmanaged
+    }
+}
+else{
+    log.e("could not determine managed status from customProperties: " + JSON.stringify(customProperties));
+}
+
+//Functions
+function waitForCustomEvent(){
+    //var eventType = isExternalEvent ? "external" : "internal";
+    var eventCustom = null;
+    var endDate = new Date();
+    var eventName = resourceNames;
+
+    //endDate.setMinutes(endDate.getMinutes() + 2); // 2 mins from now
+    endDate.setDate(endDate.getDate() ); // 2 weeks from now
+    log.d("waitForCustomEvent: eventName: " + eventName);
+    log.d("waitForCustomEvent: endDate: " + endDate.toISOString());
+
+    if (eventName !== null) {
+        eventCustom = System.waitCustomEventUntil("internal",eventName,endDate);
+
+        if(eventCustom !== null){
+            log.d("waitForCustomEvent: eventCustom: " + eventCustom);
+            log.d("waitForCustomEvent: success");
+        }
+        else{
+            log.d("waitForCustomEvent: timed out");
+        }
+    }
+    else{
+        log.d("waitForCustomEvent: no wait required");
+    }
+}
+
+function SendEmail(toAddress,subject,content){
+    var message = new EmailMessage();
+
+    //message.fromName = "vOrchestrator";
+    message.smtpHost = "10.219.253.4";
+    message.smtpPort = 25;
+    message.fromAddress = "lowell_ssp@vchs.vodafone.net";
+    message.toAddress = toAddress;
+    message.subject = subject;
+    message.addMimePart(content,"text/html; charset=UTF-8");
+    message.sendMessage();
+
+    log.d(subject + " email sent to : " + message.toAddress );
+}
+
+function createContent(){
+    var content = "<div style=\"font-family:Verdana,Calibri,Arial,sans-serif;font-size:11px;color:black;\">";
+    content += "<b><strong>Create Virtual Machine</strong></b><br /><br />";
+    content += "<div style=\"font-family:Verdana,Calibri,Arial,sans-serif;font-size:11px;color:black;\">";
+    content += "Lowell Post Provisioning request for Managed Virtual Machine.<i>(Please see details below)</i><br /><br />";
+    content += "</div>";
+    content += "<table style=\"font-family:Verdana,Calibri,Arial,sans-serif;font-size:11px;color:black;\">";
+    content += "<tr><td colspan=3><b>Request Information</b></td><tr>";
+    content += "<tr><td colspan=2><b>Deployment Name</b></td><td>" + resourceNames + "</td><tr>";
+	content += "<tr><td colspan=2><b>Application Name</b></td><td>" + customProperties.resourceGroupName.split("/")[1] + "</td><tr>";
+	content += "<tr><td colspan=2><b>Hostname</b></td><td>" + customProperties.hostname + "</td><tr>";
+	content += "<tr><td colspan=2><b>Location</b></td><td>" + customProperties.dcSite + "</td><tr>";
+	content += "<tr><td colspan=2><b>Environment</b></td><td>" + customProperties.env + "</td><tr>";
+    content += "<tr><td colspan=2><b>IP Address</b></td><td>" + ipAddress + "</td><tr>";
+	content += "<tr><td colspan=2><b>T-Shirt Size System</b></td><td>" + customProperties.tShirt + "</td><tr>";
+    content += "<tr><td colspan=2><b>System Disk Size (GB)</b></td><td>" + customProperties.provisionGB + "</td><tr>";
+    content += "<tr><td colspan=2><b>OS Version</b></td><td>" + customProperties.softwareName + "</td><tr>";	
+    content += "<tr><td colspan=2><b>Image Ref</b></td><td>" + customProperties.imageRef + "</td><tr>";	
+    content += "<tr><td colspan=2><b>Datastore</b></td><td>" + customProperties.datastoreName + "</td><tr>";
+    content += "<tr><td colspan=2><b>VCenter Folder Name</b></td><td>" + customProperties.folderName + "</td><tr>";
+    content += "<tr><td colspan=2><b>UUID</b></td><td>" + customProperties.vcUuid + "</td><tr>";
+	content += "<tr><td colspan=2><b>SIEM Enabled</b></td><td>" + customProperties.siem + "</td><tr>";
+	content += "<tr><td colspan=2><b>Preserve Kernel Version</b></td><td>" + customProperties.lock_kernel + "</td><tr>";
+	content += "<tr><td colspan=2><b>Apply Minimal OS Security Updates</b></td><td>" + customProperties.security_updates + "</td><tr>";
+	content += "<tr><td colspan=2><b>Backup Policy</b></td><td>" + customProperties.backup + "</td><tr>";
+    content += "<tr><td colspan=2><b>Disaster Recovery Pattern</b></td><td>" + customProperties.drp + "</td><tr>";
+    content += "<tr><td colspan=2><b>Maintenance Window</b></td><td>" + customProperties.mwindow + "</td><tr>";
+	content += "<tr><td colspan=2><b>Service Tier</b></td><td> " + customProperties.serviceTier + "</td><tr>";
+    content += "<tr><td colspan=3></td><tr>";
+    content += "</table><br /><br />";
+    content += "<b><i>**This email is for information purposes only, please do not reply.**</i></b>";
+    content += "</div>";
+    return content;
+}

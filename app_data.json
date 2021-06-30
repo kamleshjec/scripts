@@ -1,0 +1,829 @@
+{
+	"fileVersion": "1",
+	"vra": {
+		"customProperties": {
+			"Apps": [{
+					"name": "DMS System",
+					"Id": "001",
+					"service_name": "TESCH Gummersbach"
+				},
+				{
+					"name": "Court Interaction System (CIS)",
+					"Id": "002",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "PhinAMV",
+					"Id": "003",
+					"service_name": "RMS PhinAMV"
+				},
+				{
+					"name": "Active Directory",
+					"Id": "004",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Addisson",
+					"Id": "005",
+					"service_name": "Finance"
+				},
+				{
+					"name": "AMS  (Motis)",
+					"Id": "007",
+					"service_name": "Back-Office"
+				},
+				{
+					"name": "ARIS Linz",
+					"Id": "009",
+					"service_name": "Back-Office"
+				},
+				{
+					"name": "ARIS",
+					"Id": "010",
+					"service_name": "Back-Office"
+				},
+				{
+					"name": "Audimex",
+					"Id": "011",
+					"service_name": "Finance"
+				},
+				{
+					"name": "Bellin Linz",
+					"Id": "012",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Bellin",
+					"Id": "013",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Blue Prism",
+					"Id": "015",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "CMDB",
+					"Id": "018",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Confluence",
+					"Id": "019",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Court Interaction System",
+					"Id": "021",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "CRM",
+					"Id": "022",
+					"service_name": "Finance"
+				},
+				{
+					"name": "Data Services (DB)",
+					"Id": "024",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "DWH Osnabruck",
+					"Id": "025",
+					"service_name": "BI"
+				},
+				{
+					"name": "DATEV",
+					"Id": "027",
+					"service_name": "Finance"
+				},
+				{
+					"name": "DMS - Enaio",
+					"Id": "028",
+					"service_name": "Back-Office"
+				},
+				{
+					"name": "Easy Archiv",
+					"Id": "029",
+					"service_name": "Zyklop"
+				},
+				{
+					"name": "EGVP Gummersbach",
+					"Id": "031",
+					"service_name": "TESCH Gummersbach"
+				},
+				{
+					"name": "EGVP Osnabrück",
+					"Id": "032",
+					"service_name": "TESCH Osnabrück"
+				},
+				{
+					"name": "EGVP Ratingen",
+					"Id": "033",
+					"service_name": "TESCH Krefeld/Ratingen"
+				},
+				{
+					"name": "EGVP",
+					"Id": "034",
+					"service_name": "RMS PhinAMV"
+				},
+				{
+					"name": "Endpoint Security",
+					"Id": "039",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "EIT",
+					"Id": "040",
+					"service_name": "Finance"
+				},
+				{
+					"name": "EPM",
+					"Id": "041",
+					"service_name": "Finance"
+				},
+				{
+					"name": "HFM",
+					"Id": "042",
+					"service_name": "Finance"
+				},
+				{
+					"name": "E-Procurement",
+					"Id": "043",
+					"service_name": "Finance"
+				},
+				{
+					"name": "ESW Warda",
+					"Id": "044",
+					"service_name": "DMA"
+				},
+				{
+					"name": "ETL Schnittstellen - DASA",
+					"Id": "045",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "File Services",
+					"Id": "049",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "File Upload",
+					"Id": "050",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Genesys",
+					"Id": "051",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "GTC",
+					"Id": "053",
+					"service_name": "Finance"
+				},
+				{
+					"name": "GoToWebinar",
+					"Id": "054",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "HR Service Desk",
+					"Id": "055",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "I.C. Line",
+					"Id": "056",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Icinga",
+					"Id": "057",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "AS 400",
+					"Id": "058",
+					"service_name": "RMS der IBW"
+				},
+				{
+					"name": "Ikaros G3",
+					"Id": "059",
+					"service_name": "TESCH Gummersbach"
+				},
+				{
+					"name": "Ikaros G4",
+					"Id": "060",
+					"service_name": "RMS der IBW"
+				},
+				{
+					"name": "EGVP Linz",
+					"Id": "061",
+					"service_name": "Lowell Inkasso Service"
+				},
+				{
+					"name": "Inkos",
+					"Id": "062",
+					"service_name": "TESCH Osnabrück"
+				},
+				{
+					"name": "Internetseiten Linz",
+					"Id": "063",
+					"service_name": "Lowell Inkasso Service"
+				},
+				{
+					"name": "Internetseiten",
+					"Id": "064",
+					"service_name": "Other"
+				},
+				{
+					"name": "Intranet",
+					"Id": "065",
+					"service_name": "Other"
+				},
+				{
+					"name": "Ivanti",
+					"Id": "066",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Jira",
+					"Id": "069",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Kubernetes",
+					"Id": "070",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Mandos",
+					"Id": "071",
+					"service_name": "TESCH Osnabrück"
+				},
+				{
+					"name": "Messaging",
+					"Id": "072",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Messaging Osnabrück",
+					"Id": "074",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Mimecast",
+					"Id": "077",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Mimecast Osnabrück",
+					"Id": "079",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "MDM",
+					"Id": "082",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "MDM Linz",
+					"Id": "083",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "MDM Osnabrück",
+					"Id": "084",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "MDM Gummersbach",
+					"Id": "085",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "MDM Ratingen",
+					"Id": "086",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Nagios Osnabrück",
+					"Id": "088",
+					"service_name": "TESCH Osnabrück"
+				},
+				{
+					"name": "Navision Gummersbach - Enterprise Resource Planning",
+					"Id": "089",
+					"service_name": "Finance"
+				},
+				{
+					"name": "Navision Ratingen - Enterprise Resource Planning",
+					"Id": "090",
+					"service_name": "Finance"
+				},
+				{
+					"name": "Navision Osnabrück - Enterprise Resource Planning",
+					"Id": "091",
+					"service_name": "Finance"
+				},
+				{
+					"name": "Navision Linz",
+					"Id": "092",
+					"service_name": "Finance"
+				},
+				{
+					"name": "Netzwerk",
+					"Id": "094",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Netzwerk Osnabrück",
+					"Id": "095",
+					"service_name": "TESCH Osnabrück"
+				},
+				{
+					"name": "OMS - Inspire",
+					"Id": "096",
+					"service_name": "Back-Office"
+				},
+				{
+					"name": "OTRIS",
+					"Id": "097",
+					"service_name": "Finance"
+				},
+				{
+					"name": "Passwordstate",
+					"Id": "098",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "PIA",
+					"Id": "101",
+					"service_name": "Back-Office"
+				},
+				{
+					"name": "Planview",
+					"Id": "102",
+					"service_name": "Other"
+				},
+				{
+					"name": "Print Service",
+					"Id": "103",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Qlik",
+					"Id": "104",
+					"service_name": "BI"
+				},
+				{
+					"name": "Qlik TrueChart",
+					"Id": "105",
+					"service_name": "BI"
+				},
+				{
+					"name": "Qtest",
+					"Id": "106",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "RA Micro Osnabrück",
+					"Id": "107",
+					"service_name": "TESCH Osnabrück"
+				},
+				{
+					"name": "RA Micro Zyklop",
+					"Id": "108",
+					"service_name": "Zyklop"
+				},
+				{
+					"name": "Remote Access",
+					"Id": "109",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "RM AS 400",
+					"Id": "110",
+					"service_name": "RMS der IBW"
+				},
+				{
+					"name": "Saleslogix",
+					"Id": "111",
+					"service_name": "Finance"
+				},
+				{
+					"name": "SAP",
+					"Id": "112",
+					"service_name": "Finance"
+				},
+				{
+					"name": "SAS",
+					"Id": "113",
+					"service_name": "BI"
+				},
+				{
+					"name": "SFTP Osnabrück",
+					"Id": "114",
+					"service_name": "TESCH Osnabrück"
+				},
+				{
+					"name": "SFTP",
+					"Id": "115",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Smart Tax Ballance",
+					"Id": "116",
+					"service_name": "Finance"
+				},
+				{
+					"name": "Smartsheet",
+					"Id": "117",
+					"service_name": "Other"
+				},
+				{
+					"name": "Kofax",
+					"Id": "118",
+					"service_name": "Back-Office"
+				},
+				{
+					"name": "Splunk",
+					"Id": "119",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Telefonie",
+					"Id": "120",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Telefonie Osnabrück",
+					"Id": "121",
+					"service_name": "TESCH Osnabrück"
+				},
+				{
+					"name": "VDI",
+					"Id": "123",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "VSI",
+					"Id": "124",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Workspace",
+					"Id": "125",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Zutrittsmanagement",
+					"Id": "127",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Account Service (ACC)",
+					"Id": "128",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Alternative Payment",
+					"Id": "129",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Apontas Posteingangszuordnung",
+					"Id": "130",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Jfrog",
+					"Id": "131",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Atlassian Access Mgmt",
+					"Id": "132",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Auto Import Framework",
+					"Id": "133",
+					"service_name": "TESCH Gummersbach"
+				},
+				{
+					"name": "Automic",
+					"Id": "134",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "MS Azure",
+					"Id": "136",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Bamboo",
+					"Id": "137",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Billing & Accounting (BAC)",
+					"Id": "139",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Bitbucket",
+					"Id": "140",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Calif",
+					"Id": "142",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Celonis",
+					"Id": "143",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Client Portal",
+					"Id": "144",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Cognos 7",
+					"Id": "146",
+					"service_name": "BI"
+				},
+				{
+					"name": "Cognos 8",
+					"Id": "147",
+					"service_name": "BI"
+				},
+				{
+					"name": "Cognos 10",
+					"Id": "148",
+					"service_name": "BI"
+				},
+				{
+					"name": "Cognos 11",
+					"Id": "149",
+					"service_name": "BI"
+				},
+				{
+					"name": "Consumer Portal",
+					"Id": "150",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Credit Rating Agencies (CRA)",
+					"Id": "151",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "CRM",
+					"Id": "152",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "DWH",
+					"Id": "154",
+					"service_name": "BI"
+				},
+				{
+					"name": "DWH",
+					"Id": "155",
+					"service_name": "BI"
+				},
+				{
+					"name": "Decision Engine (DEE)",
+					"Id": "156",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Dialer Kampagnen Management",
+					"Id": "157",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Dynatrace",
+					"Id": "158",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "ECM",
+					"Id": "159",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Identity Management (IDM)",
+					"Id": "160",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Lease Enabler IFRS16",
+					"Id": "161",
+					"service_name": "Finance"
+				},
+				{
+					"name": "Main Ledger (MLE)",
+					"Id": "162",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Mandanten Portal",
+					"Id": "163",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Personal Data Universe (PDU)",
+					"Id": "166",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Rapid 7",
+					"Id": "167",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "timeCard (Zeiterfassung)",
+					"Id": "168",
+					"service_name": "TESCH Krefeld/Ratingen"
+				},
+				{
+					"name": "Reporting System (PCS,GPP)",
+					"Id": "169",
+					"service_name": "RMS PhinAMV"
+				},
+				{
+					"name": "Robotic Process Automation",
+					"Id": "170",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "ttCall",
+					"Id": "171",
+					"service_name": "TESCH Krefeld/Ratingen"
+				},
+				{
+					"name": "Unified Desktop Framework (UDF)",
+					"Id": "172",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Workflow System (WFS)",
+					"Id": "173",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Batch Processing Platform",
+					"Id": "174",
+					"service_name": "DMA"
+				},
+				{
+					"name": "Address Normalisation Service",
+					"Id": "175",
+					"service_name": "DMA"
+				},
+				{
+					"name": "Oculus",
+					"Id": "176",
+					"service_name": "DMA"
+				},
+				{
+					"name": "GDPR",
+					"Id": "177",
+					"service_name": "DMA"
+				},
+				{
+					"name": "Zip City Service",
+					"Id": "178",
+					"service_name": "DMA"
+				},
+				{
+					"name": "Name Change Service",
+					"Id": "179",
+					"service_name": "DMA"
+				},
+				{
+					"name": "Invoice Service",
+					"Id": "180",
+					"service_name": "DMA"
+				},
+				{
+					"name": "Fake Provider Service",
+					"Id": "181",
+					"service_name": "DMA"
+				},
+				{
+					"name": "Oracle Data Intergrator",
+					"Id": "182",
+					"service_name": "BI"
+				},
+				{
+					"name": "NGINX Plus,",
+					"Id": "183",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Sonar",
+					"Id": "184",
+					"service_name": "Applikations-Betrieb"
+				},
+				{
+					"name": "Telefonie Gummersbach",
+					"Id": "185",
+					"service_name": "TESCH Gummersbach"
+				},
+				{
+					"name": "Telefonie Linz",
+					"Id": "186",
+					"service_name": "Lowell Inkasso Service"
+				},
+				{
+					"name": "Ansible",
+					"Id": "187",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Smartfix",
+					"Id": "188",
+					"service_name": "Back-Office"
+				},
+				{
+					"name": "Oracle Application Express",
+					"Id": "189",
+					"service_name": "Finance"
+				},
+				{
+					"name": "WinkPC",
+					"Id": "190",
+					"service_name": "TESCH Krefeld/Ratingen"
+				},
+				{
+					"name": "Automize Enterprise",
+					"Id": "191",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Crefoscore",
+					"Id": "192",
+					"service_name": "RMS der IBW"
+				},
+				{
+					"name": "e-Solution",
+					"Id": "193",
+					"service_name": "RMS der IBW"
+				},
+				{
+					"name": "FileDirector - Tesch",
+					"Id": "194",
+					"service_name": "TESCH Krefeld/Ratingen"
+				},
+				{
+					"name": "Omnikron",
+					"Id": "195",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "eSolution",
+					"Id": "196",
+					"service_name": "RMS der IBW"
+				},
+				{
+					"name": "medas",
+					"Id": "197",
+					"service_name": "Finance"
+				},
+				{
+					"name": "Nprinting",
+					"Id": "198",
+					"service_name": "BI"
+				},
+				{
+					"name": "Governikus",
+					"Id": "199",
+					"service_name": "TESCH Krefeld/Ratingen"
+				},
+				{
+					"name": "Infrastructure Systems",
+					"Id": "200",
+					"service_name": "Infrastruktur"
+				},
+				{
+					"name": "Diamant Software für Rechnungswesen",
+					"Id": "201",
+					"service_name": "Debitorenmanagement"
+				},
+				{
+					"name": "Model Development",
+					"Id": "202",
+					"service_name": "DMA"
+				}
+
+			]
+		}
+	}
+}
