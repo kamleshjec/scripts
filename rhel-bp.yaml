@@ -1,0 +1,202 @@
+formatVersion: 1
+inputs:
+  customer:
+    type: string
+    default: lowell
+    format: hidden
+  Appdescription:
+    type: string
+    title: Additional SRV information
+  Appname:
+    type: string
+    title: Application Name
+  hostname:
+    type: string
+    title: Hostname
+  siteCode:
+    type: string
+    title: Location
+  network:
+    type: string
+    title: Network Profile
+  flavor:
+    type: string
+    title: T-Shirt Size
+  systemDisk:
+    type: integer
+    default: 30
+    title: System Disk Size (GB)
+    minimum: 30
+    maximum: 450
+  apps:
+    type: array
+    title: app object
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          title: name
+        Id:
+          type: string
+          title: Id
+        service_name:
+          type: string
+          title: service_name
+        srv_info:
+          type: string
+          title: srv_info
+    format: hidden
+  custom_attributes:
+    type: array
+    title: custom object
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          title: name
+        value:
+          type: string
+          title: value
+    format: hidden
+  Linuxdisk:
+    type: array
+    description: 'Additional disks numbering must start at 1 and increment for each additional disk. All storage sizes referenced are based on GB. Mountpoint can only contain a valid directory name or swap for creating additional swap device storage. Logical Volumes and Volume Group names can only contain alpha, numeric and underscore characters Example: Disk No. 1, Disk Size 20, Mountpoint /data/01, VolumeGroup VolGroup01, LogIcalVolume LVdata01, Logical Volume Size 20 Will create a 20GB disk with a 20 GB logical volume in VolumeGroup VolGroup01 which will be mounted on /data/01'
+    title: Additional Storage Options
+    items:
+      type: object
+      properties:
+        disk_number:
+          type: integer
+          title: Disk Number
+        mountpoint:
+          type: string
+          title: Mountpoint
+        size:
+          type: integer
+          title: Disk Size (GB)
+          maximum: 1000
+          minimum: 10
+        volumename:
+          type: string
+          title: Volume Name
+        volumegroupname:
+          type: string
+          title: Volume Group Name
+        volumesize:
+          type: integer
+          title: Volume Size
+    maxItems: 7
+  SIEM:
+    type: boolean
+    default: true
+    title: SIEM Enabled
+  drType:
+    type: string
+    title: Disaster Recovery Pattern
+  os:
+    type: string
+    default: LWL-RHEL-7-U5-MANAGED
+    title: Operating System
+    format: hidden
+  managed:
+    type: string
+    description: 'Select if the virtual machine should be created as a managed or unmanaged virtual machine.  '
+    default: MANAGED
+    title: managed?
+    format: hidden
+  Backup:
+    type: string
+    title: Backup Policy
+  sla:
+    type: string
+    default: Bronze
+    title: Service Tier
+  maintenancewindow:
+    type: string
+    title: Maintenance Window
+  environment:
+    type: string
+    title: Environment
+  lock_kernel:
+    type: boolean
+    description: 'Preserve the current installed version of the Linux kernel, kernel modules and Red Hat release packages from being updated to a later version. No security updates will be applied to the packages whilst they are version locked. This may leave the kernel on this virtual machine vulnerable to security threats from internal/external actors, and may lead to the compromise of other platform infrastructure.'
+    default: false
+    title: Preserve Kernel version
+  security_updates:
+    type: boolean
+    description: Update the server with minimal OS security packages during the initial patch/update process. Security updates will not apply to packages that have been version locked.
+    default: false
+    title: Apply Minimal OS Security Updates
+resources:
+  Cloud_vSphere_Machine_1:
+    type: Cloud.vSphere.Machine
+    properties:
+      folderName: '${input.apps.service_name[0]}/${input.apps.name[0]}'
+      networks:
+        - tags: []
+          network: '${resource.Cloud_vSphere_Network_1.id}'
+          assignment: static
+          assignIPv6Address: false
+          assignPublicIpAddress: false
+      imageRef: '${input.environment == "Prod" ? to_upper(input.siteCode) + ''-''+ to_upper(input.os): input.os}'
+      hostname: '${input.hostname}'
+      managed: '${input.managed}'
+      flavor: '${input.flavor}'
+      disks1: '${input.Linuxdisk}'
+      newName: '${input.hostname}'
+      drp: '${input.drType}'
+      backup: '${input.Backup}'
+      mwindow: '${input.maintenancewindow}'
+      lock_kernel: '${input.lock_kernel}'
+      security_updates: '${input.security_updates}'
+      dcSite: '${input.siteCode}'
+      siem: '${input.SIEM}'
+      env: '${input.environment}'
+      serviceTier: '${input.sla}'
+      constraints:
+        - tag: 'site:${to_lower(input.siteCode)}'
+      storage:
+        constraints:
+          - tag: 'site:${to_lower(input.siteCode)}'
+        bootDiskCapacityInGB: '${input.systemDisk}'
+      customizationSpec: '${to_lower(input.customer) + ''-rhel''}'
+  Cloud_Ansible_1:
+    type: Cloud.Ansible
+    properties:
+      authentication: usernamePassword
+      host: '${resource.Cloud_vSphere_Machine_1.*}'
+      osType: '${resource.Cloud_vSphere_Machine_1.osType}'
+      username: cwuser
+      password: vodafone
+      account: '${''ansible-core.'' + to_lower(input.siteCode) + ''.'' + to_lower(input.customer)}'
+      playbooks:
+        provision:
+          - '/etc/ansible/ansible-project-env-build/rhel_provision_${to_lower(input.managed)}.yml'
+        #- /home/IPA/lua_w113257/ansible/ansible-project-env-build/disk_test.yml
+        de-provision:
+          - '/etc/ansible/ansible-project-env-build/rhel_decomm_${to_lower(input.managed)}.yml'
+      hostVariables: |
+        site_code: ${to_lower(input.siteCode)}
+        app_info: ${input.apps}
+        custom_attributes: ${input.custom_attributes}
+        t_shirt_size: ${input.flavor}
+        customer: ${input.customer}
+        dr_pattern: ${input.drType}
+        backup_tag: ${input.Backup}
+        stage: ${input.environment}
+        application_description: ${input.Appdescription}
+        disk_info: ${input.Linuxdisk}
+        original_device_name: '${input.hostname}'
+        siem_enabled: ${input.SIEM}
+        update_os_lock_release: ${input.lock_kernel}
+        update_os_security: ${input.security_updates}
+  Cloud_vSphere_Network_1:
+    type: Cloud.vSphere.Network
+    properties:
+      networkType: existing
+      constraints:
+        - tag: 'network.vlanid:${input.network}'
+        #- tag: 'site:${input.siteCode}'
+        - tag: 'site:${to_lower(input.siteCode)}'
